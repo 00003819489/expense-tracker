@@ -4,7 +4,35 @@ def menu():
  print("2.view expense")
  print("3.view total expense by category")
  print("4.add expense")
-def addexpense():
- a=input("enter category")
- n=int(input("eneter the amount")
- cursor.execute("INSERT INTO EXP
+def add_expense():
+    a = input("Enter category: ")
+    n = int(input("Enter the amount: "))
+    d = input("Enter date (YYYY-MM-DD): ")
+    cursor.execute("INSERT INTO EXP (CATEGORY, AMOUNT, DATE) VALUES (?, ?, ?)", (a, n, d))
+    conn.commit()
+    print("Expense added!")
+def viewexpense():
+    cursor.execute("SELECT * FROM EXP")
+    r = cursor.fetchall()
+    for i in r:
+        print(i)
+def viewdetailed():
+    cursor.execute("SELECT category, SUM(amount) FROM expenses GROUP BY category")
+    rows = cursor.fetchall()
+    print("\n--- Total by Category ---")
+    for row in rows:
+        print(f"{row[0]}: ₹{row[1]}")
+while True:
+    menu()
+    choice=int(input("enter option"))
+    if choice == '1':
+        add_expense()
+    elif choice == '2':
+        view_expenses()
+    elif choice == '3':
+        view_total_by_category()
+    elif choice == '4':
+        print("Exiting...")
+        break
+    else:
+        print("Invalid choice. Try again.")
