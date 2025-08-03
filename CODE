@@ -1,0 +1,10 @@
+def menu():
+ print("EXPENSE TRACKER")
+ print("1.add expense")
+ print("2.view expense")
+ print("3.view total expense by category")
+ print("4.add expense")
+def addexpense():
+ a=input("enter category")
+ n=int(input("eneter the amount")
+ cursor.execute("INSERT INTO EXP
