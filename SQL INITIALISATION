@@ -1,0 +1,16 @@
+import sqlite3
+
+conn = sqlite3.connect("expense.db")
+cursor = conn.cursor()
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS EXP (
+    SNO INTEGER PRIMARY KEY AUTOINCREMENT,
+    CATEGORY TEXT,
+    AMOUNT INTEGER,
+    DATE TEXT
+)
+''')
+
+conn.commit()
+conn.close()
